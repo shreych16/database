@@ -36,4 +36,4 @@ const products = [
       available: true,
     },
   ];
-  
+  module.exports.Data = products;

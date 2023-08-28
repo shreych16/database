@@ -50,9 +50,10 @@ connData.connect(function (res, error) {
         result.rows = filterParam2(result.rows, "available", available);
         result.rows = filterParam(result.rows, "category", category);
         if(sort==="By Price(Low to High)") result.rows.sort((st1,st2) => st1.price-st2.price);
-        if(sort==="By Price(Low to High)") result.rows.sort((st1,st2) => st2.price-st1.price);
+        if(sort==="By Price(High to Low)") result.rows.sort((st1,st2) => st2.price-st1.price);
         if(sort==="By Name(A to Z)") result.rows.sort((st1,st2) => st1.name.localeCompare(st2.name));
         if(sort==="By Name(Z to A)") result.rows.sort((st1,st2) => st2.name.localeCompare(st1.name));
+        console.log(result.rows)
         res.send(result.rows)
       };
     });
@@ -100,7 +101,7 @@ connData.connect(function (res, error) {
     console.log(arr, nam, values)
     let valuesArr = values.split(",");
     console.log(valuesArr);
-    let arr1 = arr.filter((a1) => valuesArr.find((val) => val === a1[nam]));
+    let arr1 = arr.filter((a1) => valuesArr.find((val) => val.substring(0,4) === a1[nam].substring(0,4)));
     console.log(arr1);
     return arr1;
   };
